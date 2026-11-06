@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Go - Delivery Service (Yangon, Mandalay, Naypyitaw)</title>
+  
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-red: #dc2626;
+      --brand-yellow: #f59e0b;
+      --theme-blue: #0284c7;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f9ff 0%, #fff1f2 100%);
+      color: var(--text-dark);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    /* Top Red-Yellow Decorative Bar */
+    .top-banner-strip {
+      height: 6px;
+      background: linear-gradient(90deg, var(--brand-red), var(--brand-yellow), var(--theme-blue));
+    }
+
+    /* Navigation Header */
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid rgba(220, 38, 38, 0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      max-height: 42px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand-red);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
+      padding: 3rem 1.2rem 2.5rem;
+      text-align: center;
+      border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .hero-content {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(220, 38, 38, 0.1);
+      color: var(--brand-red);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(220, 38, 38, 0.2);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark);
+      line-height: 1.35;
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .text-easy { color: var(--brand-red); }
+    .text-go { color: var(--brand-yellow); }
+
+    .city-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .city-tag {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--theme-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    /* Features Grid */
+    .features {
+      max-width: 1000px;
+      margin: -1.5rem auto 2.5rem;
+      padding: 0 1.2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      border: 1px solid rgba(2, 132, 199, 0.15);
+      transition: transform 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(220, 38, 38, 0.1);
+      color: var(--brand-red);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    /* Price List Section */
+    .pricelist-section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .section-title h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .pricelist-card {
+      background: #FFFFFF;
+      padding: 1.2rem;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.08);
+      border: 2px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .pricelist-img-container {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .pricelist-img-container img {
+      width: 100%;
+      height: auto;
+      max-height: 700px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.2rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15);
+      border-bottom: 5px solid var(--brand-red);
+    }
+
+    .contact-card h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .phone-display {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--brand-yellow);
+      margin: 1.2rem 0;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-call {
+      background: linear-gradient(135deg, var(--brand-red), #b91c1c);
+      color: white;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .btn-call:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 1.5rem 1.2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.65rem; }
+      .phone-display { font-size: 1.5rem; }
+      .section-title h2 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-banner-strip"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <!-- Logo PNG File integrated -->
+        <img src="ei_1793951188937-removebg-preview.png" alt="Easy Go Logo" class="logo-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">ဝန်ဆောင်မှုများ</a></li>
+        <li><a href="#pricelist">Price List နှုန်းထားများ</a></li>
+        <li><a href="#contact">ဆက်သွယ်ရန်</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa-solid fa-truck-fast"></i> Delivery Services</span>
+      <h1>မြန်ဆန် စိတ်ချ ယုံကြည်ရတဲ့ <br><span class="text-easy">EASY</span><span class="text-go">GO</span> Delivery Service</h1>
+      <p>အွန်လိုင်းရှော့ပ်များနှင့် လူကြီးမင်းတို့၏ ပါဆယ်ပစ္စည်းများကို တာဝန်ယူမှု အပြည့်ဖြင့် အိမ်တိုင်ရာရောက် ပို့ဆောင်ပေးနေပါသည်။</p>
+      
+      <!-- မြို့ကြီး (၃) မြို့ပြသခြင်း -->
+      <div class="city-badges">
+        <div class="city-tag"><i class="fa-solid fa-location-dot" style="color:var(--brand-red);"></i> ရန်ကုန်</div>
+        <div class="city-tag"><i class="fa-solid fa-location-dot" style="color:var(--brand-red);"></i> မန္တလေး</div>
+        <div class="city-tag"><i class="fa-solid fa-location-dot" style="color:var(--brand-red);"></i> နေပြည်တော်</div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap;">
+        <!-- ပါဆယ် အခုပဲအပ်မည် ခလုတ် -->
+        <a href="tel:09779964344" class="btn-call">
+          <i class="fa-solid fa-box"></i> ပါဆယ် အခုပဲအပ်မည်
+        </a>
+        <a href="#pricelist" style="border: 1.5px solid var(--brand-red); color: var(--brand-red); padding: 0.7rem 1.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; background: white; font-size: 0.9rem;">Price List ကြည့်မည်</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="features" id="features">
+    <div class="grid-3">
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-city"></i>
+        </div>
+        <h3>မြို့ကြီးများသို့ အရောက်ပို့ဆောင်မှု</h3>
+        <p>ရန်ကုန်၊ မန္တလေး နှင့် နေပြည်တော် မြို့ကြီးများအတွင်း အိမ်တိုင်ရာရောက် တိကျစွာ ပို့ဆောင်ပေးခြင်း။</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3>ဂရုတစိုက် ပို့ဆောင်မှု</h3>
+        <p>လူကြီးမင်းတို့၏ ပစ္စည်းများကို စနစ်တကျ မပျက်စီးစေဘဲ တာဝန်ယူ ပို့ဆောင်ပေးပါသည်။</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+        </div>
+        <h3>သင့်တော်သော ဝန်ဆောင်ခ</h3>
+        <p>မြို့နယ်အလိုက် မျှတသော Delivery နှုန်းထားများဖြင့် ဝန်ဆောင်မှုပေးနေပါသည်။</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Price List Section -->
+  <section class="pricelist-section" id="pricelist">
+    <div class="section-title">
+      <h2>မြို့နယ်အလိုက် Price List နှုန်းထားများ</h2>
+      <p>ပို့ဆောင်ခ နှုန်းထားများနှင့် ဝန်ဆောင်မှုရရှိနိုင်သော မြို့နယ်များ</p>
+    </div>
+
+    <div class="pricelist-card">
+      <div class="pricelist-img-container">
+        <!-- Price List Image File integrated -->
+        <img src="8_20261106_141241_0002.png" alt="Easy Go Delivery Price List">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="contact-card">
+      <h2>ပါဆယ် ပို့ဆောင်ရန် ဆက်သွယ်လိုက်ပါ</h2>
+      <p>Easy Go Delivery Service မှ အစဉ်အမြဲ အသင့်ရှိနေပါသည်။</p>
+      
+      <div class="phone-display">
+        <i class="fa-solid fa-phone-volume"></i> 09 7799 64344
+      </div>
+
+      <a href="tel:09779964344" class="btn-call">
+        တိုက်ရိုက် ဖုန်းခေါ်ဆိုရန်
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Easy Go Delivery Service. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
