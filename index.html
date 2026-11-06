@@ -241,7 +241,7 @@
       margin: 0 auto;
     }
 
-    /* Contact Section */
+    /* Contact Section (Multi-channel Buttons) */
     .contact-section {
       max-width: 850px;
       margin: 2.5rem auto;
@@ -274,27 +274,49 @@
       font-size: 1.7rem;
       font-weight: 800;
       color: var(--brand-red);
-      margin: 1rem 0;
+      margin: 0.8rem 0 1.2rem;
       letter-spacing: 0.5px;
     }
 
-    .btn-call {
-      background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
-      color: white;
-      padding: 0.6rem 1.5rem;
+    /* Contact Buttons Group */
+    .contact-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-contact-item {
+      padding: 0.6rem 1.2rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
-      transition: transform 0.2s ease;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: white;
     }
 
-    .btn-call:hover {
+    .btn-contact-item:hover {
       transform: translateY(-2px);
+    }
+
+    .btn-phone {
+      background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+    }
+
+    .btn-facebook {
+      background: linear-gradient(135deg, #1877f2, #0b5ed7);
+      box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+    }
+
+    .btn-tiktok {
+      background: linear-gradient(135deg, #000000, #25f4ee);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     /* Footer */
@@ -312,6 +334,7 @@
       .hero h1 { font-size: 1.45rem; }
       .phone-display { font-size: 1.4rem; }
       .section-title h2 { font-size: 1.25rem; }
+      .btn-contact-item { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -327,6 +350,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#features">ဝန်ဆောင်မှုများ</a></li>
         <li><a href="#pricelist">Price List & သတ်မှတ်ချက်များ</a></li>
+        <li><a href="#reviews">သုံးသပ်ချက်များ</a></li>
         <li><a href="#contact">ဆက်သွယ်ရန်</a></li>
       </ul>
     </div>
@@ -347,7 +371,7 @@
 
       <div style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap;">
         <!-- အပေါ်ဘက် ခလုတ် - Messenger သို့ သွားမည် -->
-        <a href="https://m.me/61596469582893" target="_blank" class="btn-call">
+        <a href="https://m.me/61596469582893" target="_blank" class="btn-contact-item btn-phone">
           <i class="fa-brands fa-facebook-messenger"></i> ပါဆယ် အခုပဲအပ်မည်
         </a>
         <a href="#pricelist" style="border: 1.5px solid var(--brand-red); color: var(--brand-red); padding: 0.6rem 1.3rem; border-radius: 50px; text-decoration: none; font-weight: 700; background: white; font-size: 0.85rem;">Price List ကြည့်မည်</a>
@@ -413,7 +437,45 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Customer Reviews Section -->
+  <section class="pricelist-section" id="reviews" style="margin-top: 2rem;">
+    <div class="section-title">
+      <h2>ဖောက်သည်များ၏ ယုံကြည်မှုနှင့် သုံးသပ်ချက်များ</h2>
+      <p>Easy Go Delivery Service ကို အသုံးပြုအားပေးနေကြသော ရှော့ပ်ပိုင်ရှင်များ၏ စကားသံများ</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      
+      <!-- Review Card 1 -->
+      <div style="background: #ffffff; padding: 1.2rem; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+        <div style="color: #f59e0b; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-dark); margin-bottom: 0.8rem; font-style: italic;">
+          "ပစ္စည်းပို့ရတာ အရမ်းမြန်ပြီး စနစ်ကျပါတယ်။ Customer တွေဆီ ငွေလွှဲတာလည်း တိကျတော့ အရမ်းသဘောကျပါတယ်ရှင်။"
+        </p>
+        <div style="font-weight: 700; font-size: 0.82rem; color: var(--brand-red);">
+          - M&M Online Shop <span style="color: var(--text-muted); font-weight: 400;">(ရန်ကုန်)</span>
+        </div>
+      </div>
+
+      <!-- Review Card 2 -->
+      <div style="background: #ffffff; padding: 1.2rem; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+        <div style="color: #f59e0b; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-dark); margin-bottom: 0.8rem; font-style: italic;">
+          "ယာဉ်မောင်းတွေကလည်း ယဉ်ကျေးပြီး ပစ္စည်းတွေကို ဂရုတစိုက် ပို့ပေးတဲ့အတွက် အမြဲလက်တွဲဖြစ်ပါတယ်။"
+        </p>
+        <div style="font-weight: 700; font-size: 0.82rem; color: var(--brand-red);">
+          - Shwe Zin Fashion <span style="color: var(--text-muted); font-weight: 400;">(မန္တလေး)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section (Phone, Facebook, TikTok) -->
   <section class="contact-section" id="contact">
     <div class="contact-card">
       <h2>ပါဆယ် ပို့ဆောင်ရန် ဆက်သွယ်လိုက်ပါ</h2>
@@ -423,10 +485,18 @@
         <i class="fa-solid fa-phone-volume"></i> 09 7799 64344
       </div>
 
-      <!-- အောက်ဆုံးဘက် ခလုတ် - ဖုန်းတိုက်ရိုက်ခေါ်ဆိုရန် -->
-      <a href="tel:09779964344" class="btn-call">
-        <i class="fa-solid fa-phone"></i> တိုက်ရိုက် ဖုန်းခေါ်ဆိုရန်
-      </a>
+      <!-- ခလုတ် (၃) ခု - Phone, Facebook, TikTok -->
+      <div class="contact-btn-group">
+        <a href="tel:09779964344" class="btn-contact-item btn-phone">
+          <i class="fa-solid fa-phone"></i> ဖုန်းခေါ်ဆိုရန်
+        </a>
+        <a href="https://www.facebook.com/share/1CDRXXg1qZ/" target="_blank" class="btn-contact-item btn-facebook">
+          <i class="fa-brands fa-facebook"></i> Facebook Page
+        </a>
+        <a href="https://www.tiktok.com/@easygo1623" target="_blank" class="btn-contact-item btn-tiktok">
+          <i class="fa-brands fa-tiktok"></i> TikTok Account
+        </a>
+      </div>
     </div>
   </section>
 
